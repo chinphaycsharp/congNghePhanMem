@@ -1,0 +1,188 @@
+﻿@model congNghePhanMem.Models.check
+@using congNghePhanMem.common
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_main.cshtml";
+}
+
+@section header
+{
+    @null
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    @using (Html.BeginForm("check", "check", FormMethod.Post, new { @name = "frmDiemDanh" }))
+    {
+        @Html.HiddenFor(model => model.idRegister)
+
+        <input type="submit" value="Điểm danh" class="btn-success" id="diem-danh" />
+    }
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+        <!-- Area Chart -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin điểm danh</h6>
+                    <div class="dropdown no-arrow">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                            <div class="dropdown-header">Dropdown Header:</div>
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-area">
+                        <ul>
+                            <li>
+                                Họ và tên : @if (Session[commonConst.name] != null)
+                                {
+                                    userLogin a = Session[commonConst.name] as userLogin;
+                                    @a.name;
+                                }
+                            </li>
+                            <li>
+                                Phòng ban : @if (Session[commonConst.department] != null)
+                                {
+                                    userLogin a = Session[commonConst.department] as userLogin;
+                                    @a.department;
+                                }
+                            </li>
+                            <li>
+                                Email : @if (Session[commonConst.email] != null)
+                                {
+                                    userLogin a = Session[commonConst.email] as userLogin;
+                                    @a.email;
+                                }
+                            </li>
+                            <li>Thời gian gia nhập công ty : 04-07-2017</li>
+                            <li>Số ngày nghỉ kể từ lúc bắt đầu đi làm : 26 buổi</li>
+                            <li>Hoàn thành công việc trong lúc nghỉ : 60%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="calendar">
+            <div class="calendar__opts">
+                <select name="calendar__month" id="calendar__month">
+                    <option>Jan</option>
+                    <option>Feb</option>
+                    <option>Mar</option>
+                    <option>Apr</option>
+                    <option selected>May</option>
+                    <option>Jun</option>
+                    <option>Jul</option>
+                    <option>Aug</option>
+                    <option>Sep</option>
+                    <option>Oct</option>
+                    <option>Nov</option>
+                    <option>Dec</option>
+                </select>
+
+                <select name="calendar__year" id="calendar__year">
+                    <option>2017</option>
+                    <option>2018</option>
+                    <option>2019</option>
+                    <option selected>2020</option>
+                </select>
+            </div>
+
+            <div class="calendar__body">
+                <div class="calendar__days">
+                    <div>M</div>
+                    <div>T</div>
+                    <div>W</div>
+                    <div>T</div>
+                    <div>F</div>
+                    <div>S</div>
+                    <div>S</div>
+                </div>
+
+                <div class="calendar__dates">
+                    <div class="calendar__date calendar__date--grey"><span>27</span></div>
+                    <div class="calendar__date calendar__date--grey"><span>28</span></div>
+                    <div class="calendar__date calendar__date--grey"><span>29</span></div>
+                    <div class="calendar__date calendar__date--grey"><span>30</span></div>
+                    <div class="calendar__date"><span>1</span></div>
+                    <div class="calendar__date"><span>2</span></div>
+                    <div class="calendar__date"><span>3</span></div>
+                    <div class="calendar__date"><span>4</span></div>
+                    <div class="calendar__date"><span>5</span></div>
+                    <div class="calendar__date"><span>6</span></div>
+                    <div class="calendar__date"><span>7</span></div>
+                    <div class="calendar__date"><span>8</span></div>
+                    <div class="calendar__date"><span>9</span></div>
+                    <div class="calendar__date"><span>10</span></div>
+                    <div class="calendar__date"><span>11</span></div>
+                    <div class="calendar__date"><span>12</span></div>
+                    <div class="calendar__date"><span>13</span></div>
+                    <div class="calendar__date"><span>14</span></div>
+                    <div class="calendar__date"><span>15</span></div>
+                    <div class="calendar__date calendar__date--selected calendar__date--first-date calendar__date--range-start"><span>16</span></div>
+                    <div class="calendar__date calendar__date--selected calendar__date--last-date"><span>17</span></div>
+                    <div class="calendar__date calendar__date--selected calendar__date--first-date"><span>18</span></div>
+                    <div class="calendar__date calendar__date--selected"><span>19</span></div>
+                    <div class="calendar__date calendar__date--selected"><span>20</span></div>
+                    <div class="calendar__date calendar__date--selected calendar__date--last-date calendar__date--range-end"><span>21</span></div>
+                    <div class="calendar__date"><span>22</span></div>
+                    <div class="calendar__date"><span>23</span></div>
+                    <div class="calendar__date"><span>24</span></div>
+                    <div class="calendar__date"><span>25</span></div>
+                    <div class="calendar__date"><span>26</span></div>
+                    <div class="calendar__date"><span>27</span></div>
+                    <div class="calendar__date"><span>28</span></div>
+                    <div class="calendar__date"><span>29</span></div>
+                    <div class="calendar__date"><span>30</span></div>
+                    <div class="calendar__date"><span>31</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>
+
+        $("#diem-danh").click(function (e) {
+            e.preventDefault();
+            var idRegis = $('form[name=frmDiemDanh] input[name=idRegister]').val();
+            $.ajax({
+                url: '@Url.Action("check", "check")',
+                method: "POST",
+                data: {
+                    idRegister: idRegis
+                },
+                success: function (data) {
+                    if (data.status) {
+                        alert(data.message);
+                    } else {
+                        alert(data.message);
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                }
+            })
+        });
+    </script>
+}
+<!-- /.container-fluid -->

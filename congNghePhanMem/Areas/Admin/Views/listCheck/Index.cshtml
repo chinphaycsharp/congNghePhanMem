@@ -1,0 +1,58 @@
+﻿@model  PagedList.IPagedList<congNghePhanMem.common.employeeCheck>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_main.cshtml";
+}
+
+@section header
+{
+    @null
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "listCheck", FormMethod.Get))
+        {
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" value="@ViewBag.Search" class="form-control bg-light border-0 small" name="Search" placeholder="Tìm kiếm điểm danh ...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        <br />
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>UserName</th>
+                        <th>Date Check</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_">
+                            <th>@item.name</th>
+                            <th>@item.userName</th>
+                            <th>@item.dateCheck</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", "listCheck", new { page }))
+        </div>
+    </div>
+</div>
+
+        </div>
+
+

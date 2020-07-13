@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<congNghePhanMem.Models.departcode>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_main.cshtml";
+}
+
+@section header
+{
+    Danh sách nhân viên trong phòng ban
+}
+<div class="card shadow mb-4">
+    <div class="form-group">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">@Html.ActionLink("Thêm nhân viên trong phòng ban", "Create")</h6>
+        </div>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Index", "code", FormMethod.Get))
+        {
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" value="@ViewBag.Search" class="form-control bg-light border-0 small" name="Search" placeholder="Tìm kiếm ...">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+        <br />
+        <div class="tab le-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Name Employee</th>
+                        <th>Id Information</th>
+                        <th>Phone</th>
+                        <th>Position</th>
+                        <th>Username</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.Id">
+                            <th>@item.nameDepartment</th>
+                            <th>@item.nameEmployee</th>
+                            <th>@item.IdInformation</th>
+                            <th>@item.phone</th>
+                            <th>@item.position</th>
+                            <th>@item.userName</th>
+                            <td>
+                                <a href="/Admin/code/Edit/@item.Id">Sửa</a> |
+                                @Ajax.ActionLink("Xóa", "Delete", new { @id = item.Id }, new AjaxOptions
+                           {
+                               Confirm = "Bạn có chắc muốn xóa bản ghi này ?",
+                               OnComplete = "$('#row_" + @item.Id + "').remove()",
+                               HttpMethod = "Delete"
+                           })
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", "code", new { page }))
+        </div>
+
+
+    </div>
+</div>
+</div>
