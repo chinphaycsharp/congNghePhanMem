@@ -42,6 +42,7 @@ namespace congNghePhanMem.Controllers
                 user.birthday = acc.Birthday;
                 var result = dao.update(user);
                 var userSession = new userLogin();
+                //add session
                 userSession.userName = user.userName;
                 userSession.userID = user.Id;
                 userSession.name = user.name;
